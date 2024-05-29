@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://img.freepik.com/free-photo/medical-bandages-pills-with-copy-space_23-2149341587.jpg?size=626&ext=jpg&ga=GA1.1.87170709.1707868800&semt=ais');
+            background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Optional: keeps the background image fixed during scroll */
+}
+
+        /* Container Styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo Styles */
+        .logo-container {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .logo-container img {
+            max-width: 200px; /* Adjust size as needed */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .logo-container:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+       
+
+        .logo-container:hover::after {
+            opacity: 1;
+        }
+
+        /* Heading Styles */
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333; /* Increased contrast */
+            background: linear-gradient(to right, hwb(204 5% 21%), #2196F3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fade-in 1s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Form Section Styles */
+        .form-section {
+            margin-bottom: 20px;
+            background-color: transparent;/* Semi-transparent white background */
+            padding: 20px;
+        }
+
+        /* Row and Column Styles */
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .column {
+            flex: 0 0 48%;
+        }
+
+        /* Label Styles */
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #555; /* Increased contrast */
+        }
+
+        /* Input Field Styles */
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            color: #333; /* Increased contrast */
+            transition: all 0.3s ease-in-out; /* Transition for all properties */
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            transform: scale(1.05); /* Subtle scale-up effect on focus */
+        }
+
+        /* Button Styles */
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"] {
+            width: 150px;
+            padding: 10px;
+            background-color: #0056b3; /* Darker blue background */
+            color: #fff;
+            border-radius: 20px; /* Soften the edges */
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add transition for smoother effect */
+            margin: 0 10px; /* Add some space between buttons */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+            transition: all 0.3s ease-in-out; /* Transition for all properties */
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover,
+        input[type="button"]:hover {
+            background-color: #003d80; /* Darker shade on hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+            transform: scale(1.1); /* Scale-up effect on hover */
+        }
+
+        /* Radio Button Styles */
+        .radio-group {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .radio-group label {
+            margin-right: 20px;
+            font-weight: normal;
+            color: #333; /* Match with other headings */
+        }
+
+        .radio-group input[type="radio"] {
+            display: none;
+        }
+
+        .radio-group input[type="radio"] + label {
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none; /* Remove border */
+            border-radius: 5px; /* Apply border-radius */
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+            color: #333; /* Match with other headings */
+            transition: background-color 0.3s ease;
+        }
+
+        .radio-group input[type="radio"]:checked + label {
+            background-color: #2196F3; /* Match with other headings */
+            color: #fff; /* White text for checked radio button */
+        }
+
+        /* Patient Type Field Styles */
+        .cash-field {
+            display: none; /* Hide cash patient fields by default */
+        }
+
+        .insurance-field {
+            display: none; /* Hide insurance patient fields by default */
+        }
+
+        /* Form Heading Styles */
+        .form-heading {
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Section Outline Styles */
+        .section-outline {
+            border: 2px solid #555;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+        }
+
+        .section-outline h2 {
+            color: #007bff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Common Fields Heading Styles */
+        .common-fields-heading {
+            color: #000 !important; /* Black color */
+            font-size: 18px !important; /* Adjust font size as needed */
+        }
+
+        /* Form Buttons Styles */
+        .form-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Result Container Styles */
+        .result-container {
+            background-color: #fffdfd;
+            border: 2px solid #1b1616;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .result-container .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .result-container .time {
+            font-style:bold;
+            color: #0f0101;
+        }
+
+        /* Mandatory Field Styles */
+        .mandatory-field {
+            border: 2px solid red;
+        }
+
+        .mandatory-text::after {
+            content: "*";
+            color: red;
+        }
+
+        /* Icons Styles */
+        i.fas {
+            margin-right: 5px;
+            color: #007bff; /* Blue color */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+     <!-- Logo Section -->
+     
+     <div class="logo-container">
+        <img src="https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/c80557d7c2fa118af5f985ca1bedf3c3" alt="Logo">
+    </div>
+    <div class="container">
+        <div class="form-section" id="patientInfoSection">
+            <h2>Follow up Charge Calculator</h2>
+            <div class="section-outline">
+                <h2>Patient Information</h2>
+                <div class="row">
+                    <div class="column">
+                        <label for="umrNo" class="mandatory-text"><i class="fas fa-id-card-alt"></i> UMR No:</label>
+                        <input type="text" id="umrNo" name="umrNo" placeholder="Enter UMR number" class="mandatory-field" required>
+                    </div>
+                    <div class="column">
+                        <label for="admissionNo" class="mandatory-text"><i class="fas fa-id-card"></i> Admission No:</label>
+                        <input type="text" id="admissionNo" name="admissionNo" placeholder="Enter Admission number" class="mandatory-field" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <label for="patientName" class="mandatory-text"><i class="fas fa-user"></i> Patient Name:</label>
+                        <input type="text" id="patientName" name="patientName" placeholder="Enter Patient name" class="mandatory-field" required>
+                    </div>
+                    <div class="column">
+                        <label for="admissionDate" class="mandatory-text"><i class="fas fa-calendar-alt"></i> Admission Date:</label>
+                        <input type="text" id="admissionDate" name="admissionDate" placeholder="Enter Admission Date (YYYY-MM-DD)" class="mandatory-field" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <label for="dischargeDate" class="mandatory-text"><i class="fas fa-calendar-alt"></i> Discharge Date:</label>
+                        <input type="text" id="dischargeDate" name="dischargeDate" placeholder="Enter Discharge Date (YYYY-MM-DD)" class="mandatory-field" required>
+                    </div>
+                    <div class="column">
+                        <label for="doctorName" class="mandatory-text"><i class="fas fa-user-md"></i> Doctor Name:</label>
+                        <input type="text" id="doctorName" name="doctorName" placeholder="Enter Doctor name" class="mandatory-field" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <label for="departmentName" class="mandatory-text"><i class="fas fa-clipboard-list"></i> Department Name:</label>
+                        <input type="text" id="departmentName" name="departmentName" placeholder="Enter Department name" class="mandatory-field" required>
+                    </div>
+                    <div class="column">
+                        <label for="organizationName" class="mandatory-text"><i class="fas fa-building"></i> Organization Name:</label>
+                        <input type="text" id="organizationName" name="organizationName" placeholder="Enter Organization name" class="mandatory-field" required>
+                    </div>
+                </div>
+            <!-- Patient Type Section -->
+        <div class="section-outline">
+            <div class="row">
+                <div class="column">
+                    <div class="center-heading">
+                    <h2><label>Patient Type:</label></h2>
+                </div>
+                    <div class="radio-group">
+                        <input type="radio" id="cashPatient" name="patientType" value="cash" checked>
+                        <label for="cashPatient">Cash</label>
+                        <input type="radio" id="insurancePatient" name="patientType" value="insurance">
+                        <label for="insurancePatient">Insurance</label>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="cash-field">
+            <div class="row">
+                <div class="column">
+                    <label for="totalBill">Total Bill Amount:</label>
+                    <input type="number" id="totalBill" name="totalBill" step="0.01" value="0" required>
+                </div>
+               
+            </div>
+        </div>
+        <div class="insurance-field">
+            <div class="row">
+                <div class="column">
+                    <label for="coPayment">CO-payment/difference amount:</label>
+                    <input type="number" id="coPayment" name="coPayment" step="0.01" value="0" required>
+                </div>
+                <div class="column">
+                    <label for="concessionAmount">Concession amount:</label>
+                    <input type="number" id="concessionAmount" name="concessionAmount" step="0.01" value="0" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="totalReceivedAmount">Total received amount:</label>
+                    <div class="result-display" id="totalReceivedAmount">0.00</div>
+                </div>
+                <div class="column">
+                    <label for="organizationDueAmount">Organization due amount:</label>
+                    <input type="number" id="organizationDueAmount" name="organizationDueAmount" step="0.01" value="0" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="totalBillInsurance">Total Bill Amount:</label>
+                    <div class="result-display" id="totalBillInsurance">0.00</div>
+                </div>
+
+               
+            </div>
+        </div>
+
+        <!-- Common Fields -->
+<div class="common-fields">
+    <div class="center-heading">
+    <h2 class="form-heading common-fields-heading">Deductions :</h2>
+</div>
+    <div class="deduction-fields">
+        <div class="row">
+            <div class="column">
+                <label for="pharmacyConsumables">Pharmacy Consumables:</label>
+                <input type="number" id="pharmacyConsumables" name="pharmacyConsumables" step="0.01" value="0" required>
+            </div>
+            <div class="column">
+                <label for="crossConsultantCharges">Cross Consultant Charges:</label>
+                <input type="number" id="crossConsultantCharges" name="crossConsultantCharges" step="0.01" value="0" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label for="bloodBankCharges">Blood Bank Charges:</label>
+                <input type="number" id="bloodBankCharges" name="bloodBankCharges" step="0.01" value="0" required>
+            </div>
+            <div class="column">
+                <label for="outsideInvestigationCharges">Outside Investigation Charges:</label>
+                <input type="number" id="outsideInvestigationCharges" name="outsideInvestigationCharges" step="0.01" value="0" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label for="dietCharges">Diet Charges:</label>
+                <input type="number" id="dietCharges" name="dietCharges" step="0.01" value="0" required>
+            </div>
+            <div class="column">
+                <label for="ambulanceCharges">Ambulance Charges:</label>
+                <input type="number" id="ambulanceCharges" name="ambulanceCharges" step="0.01" value="0" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label for="bedsideProcedureCharges">Bedside Procedure Charges:</label>
+                <input type="number" id="bedsideProcedureCharges" name="bedsideProcedureCharges" step="0.01" value="0" required>
+            </div>
+            <div class="column">
+                <label for="rentalEquipmentCharges">Rental Equipment Charges:</label>
+                <input type="number" id="rentalEquipmentCharges" name="rentalEquipmentCharges" step="0.01" value="0" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <label for="mlLCCharges">MLC Charges:</label>
+                <input type="number" id="mlLCCharges" name="mlLCCharges" step="0.01" value="0" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <label for="netBill">Net Bill:</label>
+            <div class="result-display" id="netBill">0.00</div>
+        </div>
+        <div class="column">
+            <label for="totalDeductions">Total Deductions:</label>
+            <div class="result-display" id="totalDeductions">0.00</div>
+        </div>
+    </div>
+    <!-- Cash Form Buttons -->
+<div class="form-buttons" id="cashButtons">
+    <input type="button" id="calculateCashButton" value="Calculate">
+    <input type="button" id="resetCashButton" value="Reset">
+</div>
+
+<!-- Insurance Form Buttons -->
+<div class="form-buttons" id="insuranceButtons">
+    <input type="button" id="calculateInsuranceButton" value="Calculatei">
+    <input type="button" id="resetInsuranceButton" value="Reseti">
+</div>
+</div>
+ </div>
+ <div id="result"></div>
+ <div id="resultInsurance"></div>
+ <div class="container">
+    <!-- Referral Doctor's Bank Details Section -->
+    <div class="section-outline">
+        <h2>Referral Doctor's Bank Details</h2>
+        <br>
+        <div class="form-details">
+            <div class="row">
+                <div class="column">
+                    <label for="bdName"><i class="fas fa-user"></i> BD Name:</label>
+                    <input type="text" id="bdName" name="bdName" placeholder="Enter BD name">
+                </div>
+                <div class="column">
+                    <label for="referralName"><i class="fas fa-user-friends"></i> Referral Name:</label>
+                    <input type="text" id="referralName" name="referralName" placeholder="Enter Referral name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="bankAccount"><i class="fas fa-credit-card"></i> Bank A/C:</label>
+                    <input type="text" id="bankAccount" name="bankAccount" placeholder="Enter Bank account number">
+                </div>
+                <div class="column">
+                    <label for="ifscCode"><i class="fas fa-barcode"></i> IFSC Code:</label>
+                    <input type="text" id="ifscCode" name="ifscCode" placeholder="Enter IFSC code">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="bankName"><i class="fas fa-building"></i> Bank Name:</label>
+                    <input type="text" id="bankName" name="bankName" placeholder="Enter Bank name">
+                </div>
+                <div class="column">
+                    <label for="phoneNumber"><i class="fas fa-phone"></i> Phone number:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="areas"><i class="fas fa-map-marker-alt"></i> Areas:</label>
+                    <input type="text" id="areas" name="areas" placeholder="Enter Areas">
+                </div>
+                <div class="column">
+                    <label for="professional"><i class="fas fa-briefcase"></i> Profession:</label>
+                    <input type="text" id="professional" name="professional" placeholder="Enter Professional">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="dateOfFCSettlement"><i class="fas fa-calendar-alt"></i> Date of FC settlement:</label>
+                    <input type="text" id="dateOfFCSettlement" name="dateOfFCSettlement" placeholder="Enter Date of FC settlement">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+       document.addEventListener("DOMContentLoaded", function() {
+            var admissionNoInput = document.getElementById("admissionNo");
+
+            admissionNoInput.addEventListener("change", function() {
+                var admissionNo = admissionNoInput.value;
+                fetch(`http://localhost:3000/get_patient_info?admissionNo=${admissionNo}`)
+            .then(response => response.text()) // Convert response to text
+    .then(text => {
+        // Remove \r\n characters from the text
+        const cleanedText = text.replace(/\r?\n|\r/g, '');
+        // Parse the cleaned text as JSON
+        return JSON.parse(cleanedText);
+    })
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            populateForm(data);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+
+            function populateForm(data) {
+    document.getElementById("umrNo").value = data.umrNo || '';
+    document.getElementById("admissionDate").value = data.admissionDate || '';
+    document.getElementById("dischargeDate").value = data.dischargeDate || '';
+    document.getElementById("doctorName").value = data.doctorName || '';
+    document.getElementById("departmentName").value = data.departmentName || '';
+    document.getElementById("organizationName").value = data.organizationName || '';
+    document.getElementById("patientName").value = data["patientName"] || '';
+
+    document.getElementById("bdName").value = data["BD Name"] || ''; // Assuming the column name in the Excel sheet is "BD Name"
+    document.getElementById("referralName").value = data["Referral Name"] || ''; // Assuming the column name in the Excel sheet is "Referral Name"
+    document.getElementById("bankAccount").value = data["Bank Account"] || ''; // Assuming the column name in the Excel sheet is "Bank Account"
+    document.getElementById("ifscCode").value = data["IFSC Code"] || ''; // Assuming the column name in the Excel sheet is "IFSC Code"
+    document.getElementById("bankName").value = data["Bank Name"] || ''; // Assuming the column name in the Excel sheet is "Bank Name"
+    document.getElementById("phoneNumber").value = data["Phone Number"] || ''; // Assuming the column name in the Excel sheet is "Phone Number"
+    document.getElementById("areas").value = data["Areas"] || '';
+    document.getElementById("professional").value = data["Professional"] || '';
+    document.getElementById("dateOfFCSettlement").value = data["Date of FC settlement"] || '';
+   
+
+    if (data.hasOwnProperty("Patient Type")) {
+    var patientType = data["Patient Type"];
+
+    // Select the radio button based on the patient type
+    if (patientType === "cash") {
+        cashRadio.checked = true;
+        cashRadio.dispatchEvent(new Event('change')); // Trigger change event for cashRadio
+    } else if (patientType === "insurance") {
+        insuranceRadio.checked = true;
+        insuranceRadio.dispatchEvent(new Event('change')); // Trigger change event for insuranceRadio
+    }
+}
+
+
+
+    // Populate calculation fields based on patient type
+    if (patientType === "cash") {
+        document.getElementById("totalBill").value = data["Total Bill Amount"] || '0';
+        // Update other cash-related calculation fields if available in the response data
+    } else if (patientType === "insurance") {
+        document.getElementById("coPayment").value = data["CO-payment/difference amount"] || '0';
+        document.getElementById("concessionAmount").value = data["Concession amount"] || '0';
+        document.getElementById("organizationDueAmount").value = data["Organization due amount"] || '0';
+        // Update other insurance-related calculation fields if available in the response data
+    }
+
+
+   
+
+
+    
+     // Update deduction fields
+     document.getElementById("pharmacyConsumables").value = data["Pharmacy Consumables"] || '0';
+    document.getElementById("crossConsultantCharges").value = data["Cross Consultant Charges"] || '0';
+    document.getElementById("bloodBankCharges").value = data["Blood Bank Charges"] || '0';
+    document.getElementById("outsideInvestigationCharges").value = data["Outside Investigation Charges"] || '0';
+    document.getElementById("dietCharges").value = data["Diet Charges"] || '0';
+    document.getElementById("ambulanceCharges").value = data["Ambulance Charges"] || '0';
+    document.getElementById("bedsideProcedureCharges").value = data["Bedside Procedure Charges"] || '0';
+    document.getElementById("rentalEquipmentCharges").value = data["Rental Equipment Charges"] || '0';
+    document.getElementById("mlLCCharges").value = data["MLC Charges"] || '0';
+
+    // Trigger calculation after populating the fields
+    if (patientType === "cash") {
+        calculateCashFields();
+    } else if (patientType === "insurance") {
+        calculateInsuranceFields();
+    }
+
+
+
+
+}
+
+
+           // Select radio buttons and field sections
+        var cashRadio = document.getElementById("cashPatient");
+        var insuranceRadio = document.getElementById("insurancePatient");
+        var cashField = document.querySelector(".cash-field");
+        var insuranceField = document.querySelector(".insurance-field");
+        var totalBillInput = document.getElementById("totalBill");
+        var totalBillInsuranceInput = document.getElementById("totalBillInsurance");
+        var totalReceivedAmountInput = document.getElementById("totalReceivedAmount");
+        var totalDeductionsInput = document.getElementById("totalDeductions");
+        var netBillInput = document.getElementById("netBill");
+        var coPaymentInput = document.getElementById("coPayment");
+        var concessionAmountInput = document.getElementById("concessionAmount");
+        var organizationDueAmountInput = document.getElementById("organizationDueAmount");
+        var resultCash = document.getElementById("result");
+    var resultInsurance = document.getElementById("resultInsurance");
+
+        // Event listener for cash calculate button
+        document.getElementById("calculateCashButton").addEventListener("click", function() {
+            calculateCashFields();
+        });
+
+        // Event listener for insurance calculate button
+        document.getElementById("calculateInsuranceButton").addEventListener("click", function() {
+            calculateInsuranceFields();
+        });
+
+        // Event listener for cash reset button
+        document.getElementById("resetCashButton").addEventListener("click", function() {
+            resetCashFields();
+        });
+
+        // Event listener for insurance reset button
+        document.getElementById("resetInsuranceButton").addEventListener("click", function() {
+            resetInsuranceFields();
+        });
+
+        // Function to calculate cash patient fields
+        function calculateCashFields() {
+            var totalBill = parseFloat(totalBillInput.value);
+            var totalDeductions = calculateTotalDeductions();
+
+            // Update total deductions display
+            totalDeductionsInput.textContent = totalDeductions.toFixed(2);
+
+            // Calculate net bill
+            var netBill = totalBill - totalDeductions;
+
+            // Update net bill display
+            netBillInput.textContent = netBill.toFixed(2);
+        }
+
+        // Function to calculate insurance patient fields
+        function calculateInsuranceFields() {
+            var totalReceivedAmount = parseFloat(coPaymentInput.value) - parseFloat(concessionAmountInput.value);
+            var organizationDueAmount = parseFloat(organizationDueAmountInput.value);
+            var totalBillInsurance = totalReceivedAmount + organizationDueAmount;
+            var totalDeductions = calculateTotalDeductions();
+
+            // Update total received amount display
+            totalReceivedAmountInput.textContent = totalReceivedAmount.toFixed(2);
+
+            // Update total bill amount display
+            totalBillInsuranceInput.textContent = totalBillInsurance.toFixed(2);
+
+            // Calculate net bill
+            var netBill = totalBillInsurance - totalDeductions;
+
+            // Update net bill display
+            netBillInput.textContent = netBill.toFixed(2);
+        }
+
+        // Function to calculate total deductions
+        function calculateTotalDeductions() {
+            var totalDeductions = 0;
+
+            // Loop through deduction inputs and sum up their values
+            var deductionInputs = document.querySelectorAll(".deduction-fields input[type='number']");
+            deductionInputs.forEach(function(input) {
+                totalDeductions += parseFloat(input.value);
+            });
+
+            // Update total deductions display
+            totalDeductionsInput.textContent = totalDeductions.toFixed(2);
+
+            return totalDeductions;
+        }
+
+        // Event listeners for deduction input fields
+var deductionInputs = document.querySelectorAll(".deduction-fields input[type='number']");
+deductionInputs.forEach(function(input) {
+    input.addEventListener("input", function() {
+        calculateCashFields(); // Calculate cash form net bill
+        // Also, recalculate insurance fields if needed
+        if (insuranceRadio.checked) {
+            calculateInsuranceFields();
+        }
+    });
+});
+// Event listeners for input fields in the insurance form
+totalBillInsuranceInput.addEventListener("input", calculateInsuranceFields);
+        coPaymentInput.addEventListener("input", calculateInsuranceFields);
+        concessionAmountInput.addEventListener("input", calculateInsuranceFields);
+        organizationDueAmountInput.addEventListener("input", calculateInsuranceFields);
+
+document.getElementById("calculateCashButton").addEventListener("click", function() {
+    
+    calculateFollowUpCharges();
+});
+
+
+// Function to generate styled result container
+function generateStyledResult(followUpCharges, followUpChargesAfterTDS) {
+    // Get current date and time
+    var currentDate = new Date();
+    var currentTime = currentDate.toLocaleString();
+
+    // Create the result container with styled HTML
+    var resultHTML = `
+        <div class="result-container">
+            <p class="title">Follow up Charges: ₹${followUpCharges.toFixed(2)}</p>
+            <p class="title">Follow up Charges after TDS Deduction: ₹${followUpChargesAfterTDS.toFixed(2)}</p>
+            <p class="time">Calculation Time: ${currentTime}</p>
+        </div>
+    `;
+
+    return resultHTML;
+}
+function sendDataToBackend(followUpCharges, followUpChargesAfterTDS, admissionNo) {
+    const calculationTime = new Date().toLocaleString(); // Get the current time
+    const data = {
+        admissionNo,
+        followUpCharges,
+        followUpChargesAfterTDS,
+        calculationTime // Include calculation time in the data
+    };
+
+    fetch('/update-excel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // Display success message or perform other actions
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Display error message or perform other actions
+    });
+}
+
+
+// Function to calculate follow up charges
+function calculateFollowUpCharges() {
+    var percentage = 20; // Constant 20% for follow-up charges
+    var netBillAmount = parseFloat(netBillInput.textContent); // Get the net bill amount
+
+    // Calculate follow up charges
+    var followUpCharges = netBillAmount * (percentage / 100);
+
+    // Calculate follow up charges after TDS deduction
+    var tdsDeduction = followUpCharges * 0.1; // TDS deduction (10%)
+    var followUpChargesAfterTDS =  tdsDeduction; // Follow up charges after TDS deduction
+    // Get the admissionNo value from the input field
+    var admissionNo = document.getElementById("admissionNo").value;
+     // Generate styled result container HTML
+    var resultHTML = generateStyledResult(followUpCharges, followUpChargesAfterTDS);
+
+// Display the result
+document.getElementById("result").innerHTML = resultHTML;
+sendDataToBackend(followUpCharges, followUpChargesAfterTDS, admissionNo);
+}
+
+ 
+document.getElementById("calculateInsuranceButton").addEventListener("click", function() {
+    
+    calculateFollowUpChargesInsurance();
+});
+
+// Function to calculate follow up charges
+function calculateFollowUpChargesInsurance() {
+    var percentage = 40; // Constant 20% for follow-up charges
+    var netBillAmount = parseFloat(netBillInput.textContent); // Get the net bill amount
+
+    // Calculate follow up charges
+    var followUpCharges = netBillAmount * (percentage / 100);
+
+    // Calculate follow up charges after TDS deduction
+    var tdsDeduction = followUpCharges * 0.1; // TDS deduction (10%)
+    var followUpChargesAfterTDS =  tdsDeduction; // Follow up charges after TDS deduction
+   
+    // Get the admissionNo value from the input field
+    var admissionNo = document.getElementById("admissionNo").value;
+
+    // Generate styled result container HTML
+    var resultHTML = generateStyledResult(followUpCharges, followUpChargesAfterTDS);
+
+    // Display the result
+    document.getElementById("resultInsurance").innerHTML = resultHTML;
+    sendDataToBackend(followUpCharges, followUpChargesAfterTDS, admissionNo);
+}
+
+    
+
+
+
+        // Function to reset cash fields
+function resetCashFields() {
+    totalBillInput.value = "0";
+    totalReceivedAmountInput.textContent = "0.00";
+    totalDeductionsInput.textContent = "0.00";
+    netBillInput.textContent = "0.00";
+    coPaymentInput.value = "0";
+    concessionAmountInput.value = "0";
+    organizationDueAmountInput.value = "0";
+    resultCash.innerHTML = ""; // Reset the result display for cash
+
+    // Reset all deduction input fields to "0"
+    var deductionInputs = document.querySelectorAll(".deduction-fields input[type='number']");
+    deductionInputs.forEach(function(input) {
+        input.value = "0";
+    });
+}
+// Function to reset insurance fields
+function resetInsuranceFields() {
+    totalBillInsuranceInput.textContent = "0.00"; // Reset totalBillInsuranceInput
+    totalReceivedAmountInput.textContent = "0.00";
+    totalDeductionsInput.textContent = "0.00";
+    netBillInput.textContent = "0.00";
+    coPaymentInput.value = "0";
+    concessionAmountInput.value = "0";
+    organizationDueAmountInput.value = "0";
+    resultInsurance.innerHTML = ""; // Reset the result display for insurance
+
+    // Reset all deduction input fields to "0"
+    var deductionInputs = document.querySelectorAll(".deduction-fields input[type='number']");
+    deductionInputs.forEach(function(input) {
+        input.value = "0";
+    });
+}
+
+        if (cashRadio.checked) {
+            cashField.style.display = "block";
+            insuranceField.style.display = "none";
+            document.getElementById("cashButtons").style.display = "block";
+    document.getElementById("insuranceButtons").style.display = "none";
+            calculateCashFields();
+        } else if (insuranceRadio.checked) {
+            cashField.style.display = "none";
+            insuranceField.style.display = "block";
+            document.getElementById("cashButtons").style.display = "block";
+    document.getElementById("insuranceButtons").style.display = "none";
+            calculateInsuranceFields();
+        }
+// Event listener for cash radio button
+cashRadio.addEventListener("change", function() {
+    cashField.style.display = "block";
+    insuranceField.style.display = "none";
+    document.getElementById("cashButtons").style.display = "block";
+    document.getElementById("insuranceButtons").style.display = "none";
+    calculateCashFields();
+    if (this.checked) {
+            result.style.display = "block"; // Display result for cash patient
+            resultInsurance.style.display = "none"; // Hide result for insurance patient
+        }
+});
+
+// Event listener for insurance radio button
+insuranceRadio.addEventListener("change", function() {
+    cashField.style.display = "none";
+    insuranceField.style.display = "block";
+    document.getElementById("cashButtons").style.display = "none";
+    document.getElementById("insuranceButtons").style.display = "block";
+    
+   
+        if (this.checked) {
+            resultInsurance.style.display = "block"; // Display result for insurance patient
+            resultCash.style.display = "none"; // Hide result for cash patient
+        }
+    });
+
+
+    
+    
+
+
+    });
+  
+      
+      
+    </script>
+</body>
+</html>
